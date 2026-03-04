@@ -1,0 +1,27 @@
+# Node
+node_modules/
+backend/node_modules/
+dashboard/node_modules/
+
+# Environment files (contain secrets!)
+.env
+backend/.env
+
+# Python
+ai-service/venv/
+ai-service/__pycache__/
+__pycache__/
+*.pyc
+
+# Trained model (regenerated via train_model.py)
+ai-service/model.pkl
+
+# Build artifacts
+dashboard/dist/
+
+# OS files
+.DS_Store
+Thumbs.dbPROJECT_MANAGEMENT/
+java/
+development/
+webdev/

@@ -1,0 +1,48 @@
+services:
+  # ─── MongoDB ───
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # ─── AI Service (FastAPI) ───
+  ai-service:
+    build: ./ai-service
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # ─── Backend (Node / Express) ───
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    ports:
+      - "6000:6000"
+    depends_on:
+      - ai-service
+    env_file:
+      - ./backend/.env
+    environment:
+      AI_BASE_URL: http://ai-service:8000
+      PORT: 6000
+      NODE_ENV: production
+
+  # ─── Dashboard (React → Nginx) ───
+  dashboard:
+    build: ./dashboard
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
