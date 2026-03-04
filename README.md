@@ -6,9 +6,9 @@ A full-stack machine learning system that predicts whether a food delivery order
 
 ```
 ┌─────────────┐     ┌──────────────┐     ┌──────────────┐     ┌─────────┐
-│  Dashboard   │────▶│   Backend    │────▶│  AI Service   │     │ MongoDB │
-│  React/Vite  │◀────│ Express/Node │◀────│   FastAPI     │     │ Atlas   │
-│  Port 5173   │     │  Port 8080   │     │  Port 8000    │     │ Cloud   │
+│  Dashboard  │────▶│   Backend    │────▶│  AI Service  │     │ MongoDB │
+│  React/Vite │◀────│ Express/Node │◀────│   FastAPI    │     │ Atlas   │
+│  Port 5173  │     │  Port 8080   │     │  Port 8000   │     │ Cloud   │
 └─────────────┘     └──────┬───────┘     └──────────────┘     └────▲────┘
                            │                                       │
                            └───────────────────────────────────────┘
